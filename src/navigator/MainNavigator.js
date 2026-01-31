@@ -13,7 +13,7 @@ import EditProductScreen from "../screens/EditProductScreen";
 import ImageZoomScreen from "../screens/ImageZoomScreen";
 import SplashScreen from "../screens/SplashScreen";
 import LoginScreen from "../screens/LoginScreen";
-import RegisterScreen from "../screens/RegisterScreen";
+import RegisterScreen from "../screens/SignUpScreen";
 import CartScreen from "../screens/CartScreen"; 
 
 const Stack = createStackNavigator();
