@@ -11,7 +11,7 @@ const RegisterScreen = ({ navigation }) => {
         fullname: '',
         password: '',
         confirmPassword: '',
-        role: 'buyer' // Default role sebagai pembeli
+        role: 'buyer'
     });
     const [selectedRole, setSelectedRole] = useState('buyer');
 
@@ -45,7 +45,7 @@ const RegisterScreen = ({ navigation }) => {
                 username: formData.username, 
                 fullname: formData.fullname,
                 password: formData.password,
-                role: selectedRole, // <-- Simpan role yang dipilih
+                role: selectedRole, 
                 createdAt: new Date()
             });
 
