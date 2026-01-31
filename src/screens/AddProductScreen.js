@@ -8,7 +8,6 @@ import { categoryList } from "../data/Data";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen-hooks"
 import realm from "../store/realm";
 
-// Komponen untuk gradient button
 const GradientButton = ({ children, onPress, style }) => {
     return (
         <TouchableOpacity onPress={onPress} style={style}>
@@ -23,7 +22,7 @@ const GradientButton = ({ children, onPress, style }) => {
         </TouchableOpacity>
     );
 };
-// Komponen untuk gradient image button
+
 const GradientImageButton = ({ children, onPress, style, hasImage }) => {
     return (
         <TouchableOpacity onPress={onPress} style={style}>
@@ -209,7 +208,7 @@ export default AddProductScreen = () => {
                     type='font-awesome' 
                 />
                 <InputComponent
-                    placeholder='Whatsapp number (ex : timedooracademy)'
+                    placeholder='Instagram username (ex : timedooracademy)'
                     value={productData.instagram}
                     onChangeText={(text) => onInputChange('instagram', text)}
                     isIcon={true}
@@ -218,7 +217,7 @@ export default AddProductScreen = () => {
                     type='font-awesome'
                 />
                 <InputComponent
-                    placeholder='Whatsapp number (ex : timedooracademy)'
+                    placeholder='Facebook username (ex : timedooracademy)'
                     value={productData.facebook}
                     onChangeText={(text) => onInputChange('facebook', text)}
                     isIcon={true}
