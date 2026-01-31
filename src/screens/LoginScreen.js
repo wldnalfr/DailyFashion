@@ -48,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
                     username: user.username,
                     fullname: user.fullname,
                     email: user.email || '',
-                    role: user.role, // <-- SIMPAN role user
+                    role: user.role, 
                     isLoggedIn: true,
                     loginTime: new Date(),
                     rememberMe: rememberMe

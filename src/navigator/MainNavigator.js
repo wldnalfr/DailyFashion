@@ -19,7 +19,6 @@ import CartScreen from "../screens/CartScreen";
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
-// Komponen gradient header yang dapat dikustomisasi
 const CustomGradientHeader = ({ colors = ['#01f4c3', '#60efff'], start = {x: 0, y: 0}, end = {x: 1, y: 0} }) => {
     return (
         <LinearGradient
@@ -31,7 +30,6 @@ const CustomGradientHeader = ({ colors = ['#01f4c3', '#60efff'], start = {x: 0, 
     );
 };
 
-// Gradient untuk drawer header
 const CustomDrawerHeader = ({ colors = ['#01f4c3', '#60efff'], start = {x: 0, y: 0}, end = {x: 1, y: 0} }) => {
     return (
         <LinearGradient
@@ -43,7 +41,6 @@ const CustomDrawerHeader = ({ colors = ['#01f4c3', '#60efff'], start = {x: 0, y:
     );
 };
 
-// Komponen custom untuk header left
 const CustomHeaderLeft = () => {
     const navigation = useNavigation();
     
@@ -57,13 +54,11 @@ const CustomHeaderLeft = () => {
     );
 };
 
-// Komponen custom untuk header right (Cart Icon dengan badge)
 const CustomHeaderRight = () => {
     const navigation = useNavigation();
     const [cartItemCount, setCartItemCount] = useState(0);
 
     useEffect(() => {
-        // Load initial cart count
         const cartData = realm.objects('Cart');
         const updateCartCount = () => {
             const totalItems = Array.from(cartData).reduce((total, item) => total + item.quantity, 0);
@@ -72,7 +67,6 @@ const CustomHeaderRight = () => {
         
         updateCartCount();
         
-        // Setup listener untuk update real-time
         const subscription = cartData.addListener((collection, changes) => {
             updateCartCount();
         });
@@ -95,7 +89,6 @@ const CustomHeaderRight = () => {
     );
 };
 
-// Custom Drawer Content seperti Telegram
 const CustomDrawerContent = (props) => {
     const { navigation } = props
     const [userData, setUserData] = useState({
@@ -112,7 +105,6 @@ const CustomDrawerContent = (props) => {
                 username: activeSession.username,
                 fullname: activeSession.fullname,
                 userId: activeSession.userId,
-                role: activeSession.role // <-- Tambahkan role
             });
         } else {
             setUserData(null);
@@ -124,12 +116,8 @@ const CustomDrawerContent = (props) => {
     
     if (activeSession) {
         realm.write(() => {
-            // Hapus cart saat logout
             const allCartItems = realm.objects('Cart');
             realm.delete(allCartItems);
-            
-            // SELALU hapus session saat logout, tidak peduli rememberMe
-            // Ini untuk memastikan user harus login ulang
             realm.delete(activeSession);
             console.log('Session dihapus (logout)');
         });
@@ -147,7 +135,6 @@ const CustomDrawerContent = (props) => {
             {...props}
             contentContainerStyle={styles.drawerContainer}
         >
-            {/* Header Drawer dengan Gradient */}
             <View style={styles.drawerHeader}>
                 <CustomDrawerHeader 
                     colors={['#01f4c3', '#60efff']}
@@ -175,13 +162,9 @@ const CustomDrawerContent = (props) => {
                     </View>
                 </View>
             </View>
-
-            {/* Menu Items */}
             <View style={styles.menuSection}>
                 <DrawerItemList {...props} />
             </View>
-
-            {/* Footer Section */}
             <View style={styles.footerSection}>
                 <TouchableOpacity
                     style={styles.footerItem}
@@ -198,7 +181,6 @@ const CustomDrawerContent = (props) => {
 const DrawerNav = () => {
     const navigation = useNavigation();
     
-    // Fungsi untuk mendapatkan role user saat ini
     const getUserRole = () => {
         const activeSession = realm.objects('Session').filtered('isLoggedIn == true')[0];
         return activeSession ? activeSession.role : 'buyer';

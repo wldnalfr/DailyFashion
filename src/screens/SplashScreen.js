@@ -7,22 +7,18 @@ export default SplashScreen = (props) => {
     
     useEffect(() => {
     const initializeApp = () => {
-        // Cek apakah ada session yang aktif DAN rememberMe = true
         const activeSession = realm.objects('Session').filtered('isLoggedIn == true AND rememberMe == true')[0];
         
         if (activeSession) {
-            // Jika ada session aktif DENGAN rememberMe = true, langsung ke Home
             console.log('User sudah login dengan remember me, redirect ke Home');
             navigation.replace('Drawer');
         } else {
-            // Jika tidak ada session aktif dengan remember me, cek data dummy
             const hasUsers = realm.objects('User').length > 0;
             const hasProducts = realm.objects('Product').length > 0;
             
             if (!hasUsers) createDefaultUser();
             if (!hasProducts) createDefaultProducts();
-            
-            // Set timeout untuk ke LoginScreen
+        
             setTimeout(() => {
                 navigation.replace('LoginScreen');
             }, 2000);
@@ -55,9 +51,7 @@ export default SplashScreen = (props) => {
     const createDefaultProducts = () => {
         try {
             realm.write(() => {
-                // Array semua product dengan semua kategori
                 const products = [
-                    // Kategori 1
                     {
                         id: 1, 
                         productName: 'Black T-Shirt',
@@ -69,7 +63,6 @@ export default SplashScreen = (props) => {
                         facebook: 'ShirtAtShop',
                         phoneNumber: '08123456789'
                     },
-                    // Kategori 2
                     {
                         id: 2,
                         productName: 'Running Shoes',
@@ -81,8 +74,6 @@ export default SplashScreen = (props) => {
                         facebook: 'SportsShoesShop',
                         phoneNumber: '08123456789'
                     },
-                    // ... tambahkan 7 product lainnya dengan cara yang sama
-                    // Kategori 3
                     {
                         id: 3,
                         productName: 'Apple Watch',
@@ -94,7 +85,6 @@ export default SplashScreen = (props) => {
                         facebook: 'AppleShop',
                         phoneNumber: '08123456789'
                     },
-                    // Kategori 4
                     {
                         id: 4,
                         productName: 'Khaki Pants',
@@ -106,7 +96,6 @@ export default SplashScreen = (props) => {
                         facebook: 'Shop',
                         phoneNumber: '08123456789'
                     },
-                    // Kategori 5
                     {
                         id: 5,
                         productName: 'Cotton Hoodie',
@@ -118,7 +107,6 @@ export default SplashScreen = (props) => {
                         facebook: 'WillShop',
                         phoneNumber: '08123456789'
                     },
-                    // Kategori 6
                     {
                         id: 6,
                         productName: 'Baseball Cap',
@@ -130,7 +118,6 @@ export default SplashScreen = (props) => {
                         facebook: 'BBShop',
                         phoneNumber: '08123456789'
                     },
-                    // Kategori 7
                     {
                         id: 7,
                         productName: 'Sunglasses',
@@ -142,7 +129,6 @@ export default SplashScreen = (props) => {
                         facebook: 'SunEyesShop',
                         phoneNumber: '08123456789'
                     },
-                    // Kategori 8
                     {
                         id: 8,
                         productName: 'Leather Backpack',
@@ -154,7 +140,6 @@ export default SplashScreen = (props) => {
                         facebook: 'CasualShop',
                         phoneNumber: '08123456789'
                     },
-                    // Kategori 9
                     {
                         id: 9,
                         productName: 'Cute Patrick Sticker',
@@ -167,8 +152,6 @@ export default SplashScreen = (props) => {
                         phoneNumber: '08123456789'
                     }
                 ];
-                
-                // Simpan semua produk
                 products.forEach(product => {
                     realm.create('Product', product);
                 });

@@ -9,14 +9,12 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-nat
 const GradientBorderButton = ({ children, onPress }) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.buttonContainer}>
-            {/* Gradient Border */}
             <LinearGradient
                 colors={['#06a7bcff', 'rgba(28, 255, 210, 1)']}
                 start={{x: 0.35, y: 0.98}}
                 end={{x: 0.65, y: 0.02}}
                 style={styles.gradientBorder}
             >
-                {/* Inner Container dengan background putih */}
                 <View style={styles.buttonInner}>
                     {children}
                 </View>

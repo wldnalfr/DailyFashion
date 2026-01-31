@@ -8,7 +8,6 @@ import { categoryList } from "../data/Data";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen-hooks"
 import realm from "../store/realm";
 
-// Komponen untuk gradient button
 const GradientButton = ({ children, onPress, style }) => {
     return (
         <TouchableOpacity onPress={onPress} style={style}>
@@ -24,7 +23,6 @@ const GradientButton = ({ children, onPress, style }) => {
     );
 };
 
-// Komponen untuk gradient image button
 const GradientImageButton = ({ children, onPress, style, hasImage }) => {
     return (
         <TouchableOpacity onPress={onPress} style={style}>
@@ -99,7 +97,6 @@ export default EditProductScreen = (props) => {
         } else {
             const updateData = realm.objects('Product').filtered(`id = ${idProduct}`)[0]
             
-            // Check if there are any changes
             const hasChanges = 
                 productData.productName !== updateData.productName ||
                 productData.imagePath !== updateData.imagePath ||
